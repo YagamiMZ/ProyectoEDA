@@ -9,100 +9,65 @@ package Modelo;
  * @author LENOVO
  */
 public class Postulante {
+    private String id;
     private String nombre;
-    private float promedioAcademico;
-    private float habilidadTecnica;
-    private float habilidadBlanda;
-    private Postulante compañero;
-    private String especialidad;
-    private int[] ranking;
-    private int postID;
-    private boolean acto;
+    private String descripcion;
+    private String intereses;
+    private String[] habilidades;
+    private String ubicacion;
+    private String nivelEstudios;
     
+    // Preferencias (índices de empresas)
+    private int[] rankingEmpresas;
     
-    public Postulante(String nombre, float promedioAcademico ,Postulante compañero, String especialidad, int[] ranking){
+    // Pareja actual en el matching (índice de empresa, -1 si libre)
+    private int pareja = -1;
+
+    public Postulante(String id, String nombre, String descripcion,
+                      String intereses, String[] habilidades,
+                      String ubicacion, String nivelEstudios) {
+        this.id = id;
         this.nombre = nombre;
-        this.promedioAcademico = promedioAcademico;
-        this.habilidadTecnica = 0;
-        this.habilidadBlanda = 0;
-        this.compañero = compañero;
-        this.especialidad = especialidad;
-        this.ranking = ranking;
-        this.acto = false;
-    }
-    
-    public boolean getActo() {
-        return acto;
+        this.descripcion = descripcion;
+        this.intereses = intereses;
+        this.habilidades = habilidades;
+        this.ubicacion = ubicacion;
+        this.nivelEstudios = nivelEstudios;
     }
 
-    public void setActo(boolean acto) {
-        this.acto = acto;
+    // Texto combinado para cálculo de similitud
+    public String getTexto() {
+        String hab = "";
+        if (habilidades != null) {
+            for (String s : habilidades) {
+                hab += " " + s;
+            }
+        }
+        return (descripcion + " " + intereses + " " + hab).trim();
     }
 
-    public int getPostID() {
-        return postID;
+    // Getters / setters
+    public String getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getDescripcion() { return descripcion; }
+    public String getIntereses() { return intereses; }
+    public String[] getHabilidades() { return habilidades; }
+    public String getUbicacion() { return ubicacion; }
+    public String getNivelEstudios() { return nivelEstudios; }
+
+    public void setRankingEmpresas(int[] rankingEmpresas) {
+        this.rankingEmpresas = rankingEmpresas;
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
-    }
-    
-    public String getNombre() {
-        return nombre;
+    public int[] getRankingEmpresas() {
+        return rankingEmpresas;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getPareja() {
+        return pareja;
     }
 
-    public float getPromedioAcademico() {
-        return promedioAcademico;
+    public void setPareja(int pareja) {
+        this.pareja = pareja;
     }
-
-    public void setPromedioAcademico(float promedioAcademico) {
-        this.promedioAcademico = promedioAcademico;
-    }
-
-    public float getHabilidadTecnica() {
-        return habilidadTecnica;
-    }
-
-    public void setHabilidadTecnica(float entrevista) {
-        this.habilidadTecnica = entrevista;
-    }
-
-    public float getHabilidadBlanda() {
-        return habilidadBlanda;
-    }
-
-    public void setHabilidadBlanda(float habilidadBlanda) {
-        this.habilidadBlanda = habilidadBlanda;
-    }
-
-    public Postulante getCompañero() {
-        return compañero;
-    }
-
-    public void setCompañero(Postulante compañero) {
-        this.compañero = compañero;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
-
-    public int[] getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(int[] ranking) {
-        this.ranking = ranking;
-    }
-    
-    
-    
 }
