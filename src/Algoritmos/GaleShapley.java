@@ -69,6 +69,7 @@ public class GaleShapley {
                 
                 //datos del practicante con el q se va a comparar p
                 for (int i = 0; i < vacantes[e]; i++) {
+                    System.out.println("pivote 5");
                     int indice = parejasEmpresas[e][i]; 
                     double pRank = ranking[e][peorIndice];
                     
@@ -164,9 +165,9 @@ public class GaleShapley {
         
         double[][] ranking = new double[nE][nP];
         
-        for (int p = 0; p < nP; p++) {
-            for (int e = 0; e < nE; e++) {
-                ranking[p][e] = calcularSimilitud(empresas[e], postulantes[p], metodo);
+        for (int e = 0; e < nE; e++) {
+            for (int p = 0; p < nP; p++) {
+                ranking[e][p] = calcularSimilitud(empresas[e], postulantes[p], metodo);
                 
             }
         }

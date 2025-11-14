@@ -133,27 +133,37 @@ public class Controlador1 {
             System.out.println("=====================================\n");
 
             int[][] asign = GaleShapley.emparejar(empresas, postulantes, metodo,PreferenciasPostulantes);
-
             // imprimir postulante -> empresa
             System.out.println("Postulante -> Empresa:");
-            for (int i = 0; i < postulantes.length; i++) {
-                int eIdx = asign[i]; //indice empresa
+            
+            int contador = 0;
+            
+            for (int j = 0; j < empresas.length; j++) { 
+            for (int i = 0; i < 2; i++) {
+                if(contador <5){
+                int eIdx = asign[j][i]; //indice empresa
                 String eName = (eIdx >= 0 ? empresas[eIdx].getNombre() : "Sin asignar");
-                System.out.println("  " + postulantes[i].getNombre() + " -> " + eName);
-            }
-
+                System.out.println("  " + postulantes[contador].getNombre() + " -> " + eName);
+                
+                contador++;}
+                else{
+                break;}
+            }}
             // reconstruir lista por empresa
             List<List<String>> porEmpresa = new ArrayList<>();
             for (int i = 0; i < empresas.length; i++) {
                 porEmpresa.add(new ArrayList<>());
             }
-
-            for (int i = 0; i < postulantes.length; i++) {
-                int eIdx = asign[i];
+            
+            int contador2 = 0;
+            for (int j = 0; j < empresas.length; j++) {    
+            for (int i = 0; i < 2; i++) {
+                int eIdx = asign[j][i];
                 if (eIdx >= 0 && eIdx < empresas.length) {
-                    porEmpresa.get(eIdx).add(postulantes[i].getNombre());
+                    porEmpresa.get(eIdx).add(postulantes[contador2].getNombre());
+                    contador2++;
                 }
-            }
+            }}
 
             // imprimir empresa -> lista
             System.out.println("\nEmpresa -> Postulantes:");
