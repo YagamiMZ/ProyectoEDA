@@ -4,7 +4,7 @@ import Algoritmos.GaleShapley;
 import Modelo.Empresa;
 import Modelo.Postulante;
 
-public class Controlador {
+public class Controlador1 {
 
     public static void main(String[] args) {
 
