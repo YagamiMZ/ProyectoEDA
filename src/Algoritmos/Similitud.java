@@ -35,7 +35,12 @@ public class Similitud {
         // puedes cambiar los pesos luego
         double ponderado = (0.7 * jw) + (0.3 * lv);
 
-        
+        System.out.println("Empresa: " + e.getNombre() + " - Postulante: " + p.getNombre());
+        System.out.println("  → Jaro-Winkler: " + jw);
+        System.out.println("  → Levenshtein:  " + lv);
+        System.out.println("  → Puntaje final (0.7/0.3): " + ponderado);
+        System.out.println();
+
 
         return ponderado;
     }
