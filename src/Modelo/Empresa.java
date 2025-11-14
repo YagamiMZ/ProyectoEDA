@@ -1,77 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
-import java.util.Stack;
-import Modelo.Postulante;
-/*
- * Clase Empresa
- */
 
 public class Empresa {
-    private String id;
+
+    private String codigo;
     private String nombre;
     private String descripcion;
-    private String requerimientos;
+    private String requisitos;
     private String ubicacion;
-    private String tipoEmpresa;
-    private String[] interesesEmpresariales;
-    
-    // Preferencias (índices de postulantes)
-    private int[] rankingPostulantes;
-    
-    // Pareja actual en el matching (índice de postulante, -1 si libre)
-    private int pareja = -1;
+    private String rubro;
+    private String[] tags;
+    private int capacidad; // Vacantes disponibles
 
-    public Empresa(String id, String nombre, String descripcion,
-                   String requerimientos, String ubicacion,
-                   String tipoEmpresa, String[] interesesEmpresariales) {
-        this.id = id;
+    public Empresa(String codigo, String nombre, String descripcion, String requisitos,
+                   String ubicacion, String rubro, String[] tags, int capacidad) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.requerimientos = requerimientos;
+        this.requisitos = requisitos;
         this.ubicacion = ubicacion;
-        this.tipoEmpresa = tipoEmpresa;
-        this.interesesEmpresariales = interesesEmpresariales;
+        this.rubro = rubro;
+        this.tags = tags;
+        this.capacidad = capacidad;
     }
 
-    // Texto combinado para cálculo de similitu
-    public String getTexto() {
-        String intereses = "";
-        if (interesesEmpresariales != null) {
-            for (String s : interesesEmpresariales) {
-                intereses += " " + s;
-            }
-        }
-        return (descripcion + " " + requerimientos + " " + intereses).trim();
+    public String getCodigo() {
+        return codigo;
     }
 
-    // Getters / setters básicos
-    public String getId() { return id; }
-    public String getNombre() { return nombre; }
-    public String getDescripcion() { return descripcion; }
-    public String getRequerimientos() { return requerimientos; }
-    public String getUbicacion() { return ubicacion; }
-    public String getTipoEmpresa() { return tipoEmpresa; }
-
-    public String[] getInteresesEmpresariales() { return interesesEmpresariales; }
-
-    public void setRankingPostulantes(int[] rankingPostulantes) {
-        this.rankingPostulantes = rankingPostulantes;
+    public String getNombre() {
+        return nombre;
     }
 
-    public int[] getRankingPostulantes() {
-        return rankingPostulantes;
-    }
-    
-    public int getPareja() {
-        return pareja;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setPareja(int pareja) {
-        this.pareja = pareja;
+    public String getRequisitos() {
+        return requisitos;
     }
 
-    
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public String getRubro() {
+        return rubro;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
 }

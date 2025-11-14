@@ -1,73 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author LENOVO
- */
 public class Postulante {
-    private String id;
+
+    private String codigo;
     private String nombre;
     private String descripcion;
     private String intereses;
     private String[] habilidades;
     private String ubicacion;
-    private String nivelEstudios;
-    
-    // Preferencias (índices de empresas)
-    private int[] rankingEmpresas;
-    
-    // Pareja actual en el matching (índice de empresa, -1 si libre)
-    private int pareja = -1;
+    private String estudio;
 
-    public Postulante(String id, String nombre, String descripcion,
-                      String intereses, String[] habilidades,
-                      String ubicacion, String nivelEstudios) {
-        this.id = id;
+    public Postulante(String codigo, String nombre, String descripcion, String intereses,
+                      String[] habilidades, String ubicacion, String estudio) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.intereses = intereses;
         this.habilidades = habilidades;
         this.ubicacion = ubicacion;
-        this.nivelEstudios = nivelEstudios;
+        this.estudio = estudio;
     }
 
-    // Texto combinado para cálculo de similitud
-    public String getTexto() {
-        String hab = "";
-        if (habilidades != null) {
-            for (String s : habilidades) {
-                hab += " " + s;
-            }
-        }
-        return (descripcion + " " + intereses + " " + hab).trim();
+    public String getCodigo() {
+        return codigo;
     }
 
-    // Getters / setters
-    public String getId() { return id; }
-    public String getNombre() { return nombre; }
-    public String getDescripcion() { return descripcion; }
-    public String getIntereses() { return intereses; }
-    public String[] getHabilidades() { return habilidades; }
-    public String getUbicacion() { return ubicacion; }
-    public String getNivelEstudios() { return nivelEstudios; }
-
-    public void setRankingEmpresas(int[] rankingEmpresas) {
-        this.rankingEmpresas = rankingEmpresas;
+    public String getNombre() {
+        return nombre;
     }
 
-    public int[] getRankingEmpresas() {
-        return rankingEmpresas;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public int getPareja() {
-        return pareja;
+    public String getIntereses() {
+        return intereses;
     }
 
-    public void setPareja(int pareja) {
-        this.pareja = pareja;
+    public String[] getHabilidades() {
+        return habilidades;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public String getEstudio() {
+        return estudio;
     }
 }
