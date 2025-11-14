@@ -9,7 +9,8 @@ import java.util.List;
 public class Controlador1 {
 
     public static void main(String[] args) {
-
+        
+        // Definir empresas
         Empresa[] empresas = new Empresa[3];
         empresas[0] = new Empresa(
                 "E123",
@@ -43,7 +44,8 @@ public class Controlador1 {
                 new String[]{"cloud", "devops", "infraestructura", "automatizacion"},
                 2
         );
-
+        
+        // Definir postulantes
         Postulante[] postulantes = new Postulante[5];
         postulantes[0] = new Postulante("P001", "Juan Perez",
                 "Estudiante de ingenieria de sistemas.",
@@ -81,18 +83,22 @@ public class Controlador1 {
                 "Informatica");
 
         String[] metodos = {"JaroWinkler", "Levenshtein", "Final"};
-
+        
+        int x = 1;
         for (String metodo : metodos) {
-            System.out.println("\n===============================");
+            
+            System.out.println("\nREPORTE "+ x +" ---------------------------");
+            
+            System.out.println("=====================================");
             System.out.println(" EMPAREJAMIENTO - METODO: " + metodo);
-            System.out.println("===============================\n");
+            System.out.println("=====================================\n");
 
             int[] asign = GaleShapley.emparejar(empresas, postulantes, metodo);
 
             // imprimir postulante -> empresa
             System.out.println("Postulante -> Empresa:");
             for (int i = 0; i < postulantes.length; i++) {
-                int eIdx = asign[i];
+                int eIdx = asign[i]; //indice empresa
                 String eName = (eIdx >= 0 ? empresas[eIdx].getNombre() : "Sin asignar");
                 System.out.println("  " + postulantes[i].getNombre() + " -> " + eName);
             }
@@ -123,8 +129,8 @@ public class Controlador1 {
                     System.out.println();
                 }
             }
-
-            System.out.println("\n-------------------------------------\n");
+            x++;
+            
         }
     }
 }

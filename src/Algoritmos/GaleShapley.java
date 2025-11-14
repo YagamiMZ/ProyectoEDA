@@ -56,7 +56,7 @@ public class GaleShapley {
             // Si no quedó ninguna empresa con vacantes (suma capacidades < nP),
             // entonces asignamos al mejor *de todas* (aunque no tenga vacantes) — opcional.
             if (mejorEmpresa == -1) {
-                // elegir la mejor entre todas (fallback)
+                // elegir la mejor entre todas
                 for (int e = 0; e < nE; e++) {
                     double score;
                     switch (metodo) {
@@ -69,7 +69,7 @@ public class GaleShapley {
                         mejorEmpresa = e;
                     }
                 }
-                // no decrementamos vacantes (están agotadas)
+            // no decrementamos vacantes (están agotadas)
             } else {
                 // consumir una vacante real
                 vacantes[mejorEmpresa]--;

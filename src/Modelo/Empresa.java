@@ -59,7 +59,7 @@ public class Empresa {
         this.capacidad = capacidad;
     }
     
-    // Texto combinado para cálculo de similitud (a tintin le gusta el pilin)
+    // Texto combinado para cálculo de similitud
     public String getTexto() {
         String intereses = "";
         if (tags != null) {

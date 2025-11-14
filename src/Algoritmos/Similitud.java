@@ -7,7 +7,8 @@ public class Similitud {
 
 
     public static double similitudLevenshtein(Empresa e, Postulante p) {
-
+        
+        //Se estandariza la distancai de levenshtein => poder analizarlo mejor junto a Jaro
         String a = e.getTexto();
         String b = p.getTexto();
 
@@ -31,7 +32,7 @@ public class Similitud {
         double jw = similitudJaroWinkler(e, p);
         double lv = similitudLevenshtein(e, p);
 
-        double ponderado = (0.7 * jw) + (0.3 * lv);
+        double ponderado = (0.7 * jw) + (0.3 * lv); //se consideran ambos valores
 
         System.out.println("Empresa: " + e.getNombre() + " - Postulante: " + p.getNombre());
         System.out.println("  -> Jaro-Winkler: " + jw);
