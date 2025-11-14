@@ -9,6 +9,7 @@ public class Postulante {
     private String[] habilidades;
     private String ubicacion;
     private String estudio;
+    private double puntaje;
 
     public Postulante(String codigo, String nombre, String descripcion, String intereses,
                       String[] habilidades, String ubicacion, String estudio) {

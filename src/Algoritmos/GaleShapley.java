@@ -11,7 +11,7 @@ import java.util.Stack;
 public class GaleShapley {
 
     //HACER QUE REGRESE SOLO LAS LISTAS X SEPARADO PARA PODER HACER PRINT MAS FACIL EN CONTROLADOR
-    public static int[][] emparejar(Empresa[] empresas, Postulante[] postulantes, String metodo, int[][] PreferenciasPostulantes) {
+    public static int[][] emparejar(Empresa[] empresas, Postulante[] postulantes, String metodo, int[][] rankingPost) {
 
 
         int nP = postulantes.length;
@@ -51,7 +51,7 @@ public class GaleShapley {
                 continue; //se postulo a todas las empresas
             }
             
-            int e = PreferenciasPostulantes[p][sgnPropuesta[p]] -1;
+            int e = rankingPost[p][sgnPropuesta[p]] -1;
             sgnPropuesta[p]++; //siguiente propuesta...
             
             //Empresa tiene vacantes disponibles
@@ -163,15 +163,15 @@ public class GaleShapley {
         int nP = postulantes.length;
         int nE = empresas.length;
         
-        double[][] ranking = new double[nE][nP];
+        double[][] prefEmpresa = new double[nE][nP];
         
         for (int e = 0; e < nE; e++) {
             for (int p = 0; p < nP; p++) {
-                ranking[e][p] = calcularSimilitud(empresas[e], postulantes[p], metodo);
+                prefEmpresa[e][p] = calcularSimilitud(empresas[e], postulantes[p], metodo);
                 
             }
         }
         
-        return ranking;
+        return prefEmpresa;
     }
 }

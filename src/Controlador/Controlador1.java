@@ -85,7 +85,7 @@ public class Controlador1 {
                 "Informatica");
         
         
-        int[][] PreferenciasPostulantes = {
+        int[][] rankingPost = {
             {2,1,3},
             {1,3,2},
             {3,1,2},
@@ -132,7 +132,7 @@ public class Controlador1 {
             System.out.println(" EMPAREJAMIENTO - METODO: " + metodo);
             System.out.println("=====================================\n");
 
-            int[][] asign = GaleShapley.emparejar(empresas, postulantes, metodo,PreferenciasPostulantes);
+            int[][] asign = GaleShapley.emparejar(empresas, postulantes, metodo,rankingPost);
             // imprimir postulante -> empresa
             System.out.println("Postulante -> Empresa:");
             
