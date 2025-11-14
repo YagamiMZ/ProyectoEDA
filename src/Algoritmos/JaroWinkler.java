@@ -53,10 +53,6 @@ public class JaroWinkler {
         return ((m / len1) + (m / len2) + ((m - transpositions / 2.0) / m)) / 3.0;
     }
 
-    public static double getJaro(String s1, String s2) {
-        return jaro(s1, s2);
-    }
-
     public static double getJaroWinkler(String s1, String s2) {
         double jaroScore = jaro(s1, s2);
 

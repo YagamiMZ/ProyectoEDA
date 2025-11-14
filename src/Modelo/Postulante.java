@@ -48,4 +48,15 @@ public class Postulante {
     public String getEstudio() {
         return estudio;
     }
+    
+     // Texto combinado para cálculo de similitud
+    public String getTexto() {
+        String hab = "";
+        if (habilidades != null) {
+            for (String s : habilidades) {
+                hab += " " + s;
+            }
+        }
+        return (descripcion + " " + intereses + " " + hab).trim();
+    }
 }

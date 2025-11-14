@@ -58,4 +58,14 @@ public class Empresa {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+    // Texto combinado para cálculo de similitud
+    public String getTexto() {
+        String intereses = "";
+        if (tags != null) {
+            for (String s : tags) {
+                intereses += " " + s;
+            }
+        }
+        return (descripcion + " " + requisitos + " " + intereses).trim();
+    }
 }
