@@ -61,12 +61,18 @@ public class Empresa {
     
     // Texto combinado para cálculo de similitud
     public String getTexto() {
-        String intereses = "";
+        String intereses = TagsString();
+        
+        return (descripcion + " " + requisitos + " " + intereses).trim();
+    }
+    
+    public String TagsString() {
+        String tag = "";
         if (tags != null) {
             for (String s : tags) {
-                intereses += " " + s;
+                tag += " " + s;
             }
         }
-        return (descripcion + " " + requisitos + " " + intereses).trim();
+        return tag.trim();
     }
 }

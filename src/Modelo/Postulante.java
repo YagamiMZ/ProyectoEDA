@@ -51,12 +51,20 @@ public class Postulante {
     
      // Texto combinado para cálculo de similitud
     public String getTexto() {
+        String hab = HabilidadesString();
+        return (descripcion + " " + intereses + " " + hab).trim();
+    }
+    
+    public String HabilidadesString(){
         String hab = "";
         if (habilidades != null) {
             for (String s : habilidades) {
                 hab += " " + s;
             }
         }
-        return (descripcion + " " + intereses + " " + hab).trim();
+        return hab.trim();
+        
     }
+    
+
 }

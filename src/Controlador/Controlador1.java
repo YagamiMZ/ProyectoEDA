@@ -5,6 +5,7 @@ import Modelo.Empresa;
 import Modelo.Postulante;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Controlador1 {
 
@@ -49,14 +50,14 @@ public class Controlador1 {
         Postulante[] postulantes = new Postulante[5];
         postulantes[0] = new Postulante("P001", "Juan Perez",
                 "Estudiante de ingenieria de sistemas.",
-                "Interes en programacion, ciberseguridad, analisis de datos y cloud.",
+                "Programacion, ciberseguridad, analisis de datos y cloud.",
                 new String[]{"Python", "SQL", "Linux", "ciberseguridad"},
                 "Lima, Peru",
                 "Ingenieria de Sistemas");
 
         postulantes[1] = new Postulante("P002", "Maria Lopez",
                 "Estudiante de ingenieria industrial.",
-                "Interes en analisis de datos, dashboards y reporting.",
+                "Analisis de datos, dashboards y reporting.",
                 new String[]{"Power BI", "Excel", "SQL"},
                 "Lima, Peru",
                 "Ingenieria Industrial");
@@ -82,18 +83,44 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Informatica");
 
-        String[] metodos = {"JaroWinkler", "Levenshtein", "Final"};
         
-        int x = 1;
+        System.out.println("PROGRAMA DE ASIGNACION OPTIMA ENTRE PRACTICANTES - EMPRESAS\n");
+        
+        System.out.println("Convocatoria de practicas");
+        System.out.println("===================================================");
+        for (int i = 0; i < empresas.length; i++) {
+            System.out.println("\n"+empresas[i].getNombre());
+            System.out.println("Requisitos: "+empresas[i].getRequisitos());
+            System.out.println("Tags: "+empresas[i].TagsString());
+               
+        }
+        System.out.println("\n===================================================\n");
+        
+        System.out.println("Postulantes");
+        System.out.println("===================================================");
+        for (int i = 0; i < postulantes.length; i++) {
+            System.out.println("\n"+postulantes[i].getNombre());
+            System.out.println("Interes en "+postulantes[i].getIntereses());
+                          
+        }
+        System.out.println("\n===================================================");
+        
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("\nPresione Enter para comenzar la simulacion...");
+        sc.nextLine();
+        
+        
+        String[] metodos = {"Jaro", "Levenshtein", "Final"};
         for (String metodo : metodos) {
             
-            System.out.println("\nREPORTE "+ x +" ---------------------------");
             
             System.out.println("=====================================");
             System.out.println(" EMPAREJAMIENTO - METODO: " + metodo);
             System.out.println("=====================================\n");
 
             int[] asign = GaleShapley.emparejar(empresas, postulantes, metodo);
+            
 
             // imprimir postulante -> empresa
             System.out.println("Postulante -> Empresa:");
@@ -124,12 +151,12 @@ public class Controlador1 {
                     System.out.println("Sin asignados");
                 } else {
                     for (String nombre : porEmpresa.get(i)) {
-                        System.out.print(nombre + "  ");
+                        System.out.print(nombre + " ");
+                        
                     }
                     System.out.println();
                 }
             }
-            x++;
             
         }
     }
