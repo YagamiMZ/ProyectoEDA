@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Controlador1 {
+public class Controlador {
     
     public static void main(String[] args) {
 
