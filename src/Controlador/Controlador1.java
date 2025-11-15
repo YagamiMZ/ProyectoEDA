@@ -23,7 +23,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Servicios TI",
                 new String[]{"ciberseguridad", "analitica de datos", "cloud", "automatizacion"},
-                2
+                1
         );
 
         empresas[1] = new Empresa(
@@ -34,7 +34,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Consultoria",
                 new String[]{"analitica de datos", "business intelligence", "machine learning"},
-                2
+                1
         );
 
         empresas[2] = new Empresa(
@@ -45,7 +45,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Servicios TI",
                 new String[]{"cloud", "devops", "infraestructura", "automatizacion"},
-                2
+                1
         );
 
         // Definir postulantes
@@ -132,7 +132,7 @@ public class Controlador1 {
             System.out.println("=====================================");
             System.out.println(" EMPAREJAMIENTO - METODO: " + metodo);
             System.out.println("=====================================\n");
-
+            
             int[][] asign = GaleShapley.emparejar(empresas, postulantes, metodo,rankingPost);
             System.out.println("Postulante -> Empresa:");
             

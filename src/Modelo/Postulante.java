@@ -23,6 +23,25 @@ public class Postulante {
         this.estudio = estudio;
         this.orden = orden;
     }
+    @Override
+    public Postulante clone() {
+    // Crear nueva instancia copiando los campos principales
+    Postulante copia = new Postulante(
+        this.codigo,
+        this.nombre,
+        this.descripcion,
+        this.intereses,
+        this.habilidades != null ? this.habilidades.clone() : null,
+        this.ubicacion,
+        this.estudio,
+        this.orden
+    );
+
+    // Copiar el vector de puntajes
+    copia.puntaje = this.puntaje.clone();
+
+    return copia;
+    }
 
     public int getOrden() {
         return orden;

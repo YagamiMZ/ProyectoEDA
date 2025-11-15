@@ -43,7 +43,7 @@ public class GaleShapley {
             if(postulantesLibres[post]){
                 parejaEmpresa[emp] = post;
                 parejaPostulante[post] = emp;   
-                postulantesLibres[emp] = false;
+                postulantesLibres[post] = false;
                 empresaLibres.pop();
             }
             else{
@@ -57,7 +57,7 @@ public class GaleShapley {
             }
             }
             
-            int [][] parejasPorEmpresas = new int[nE][2];
+            int [][] parejasPorEmpresas = new int[nE][1];
             for (int i = 0; i < nE; i++) {
                 for (int j = 0; j < 1; j++) {
                     parejasPorEmpresas[i][j] = parejaEmpresa[i];
