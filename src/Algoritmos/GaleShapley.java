@@ -3,9 +3,11 @@ package Algoritmos;
 import static Algoritmos.Similitud.similitudJaro;
 import Modelo.Empresa;
 import Modelo.Postulante;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Stack;
+import java.util.List;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class GaleShapley {
 
@@ -16,57 +18,60 @@ public class GaleShapley {
         int nP = postulantes.length;
         int nE = empresas.length;
         
-        Stack<Integer> empresaLibres = new Stack<>();
-        boolean[] postulantesLibres = new boolean[nP];
+        List<List<Integer>> asignados = new ArrayList<>(nE); //no puede ser matriz porque el proceso es dínamico;
+        for (int i = 0; i < nE; i++) asignados.add(new ArrayList<>());
         
-        int[] sgnPropuesta = new int[nP];
+        int[] sgnPropuesta = new int[nE]; //lista de los siguientes postulantes a asignar para la empresa nE
         
-        int[] postulDeEmpresa = new int[nE];
         int[] empresDePost = new int[nP];
+        Arrays.fill(empresDePost, -1);
         
-        for (int p = 0; p < nP; p++) {
-            postulantesLibres[p] = true;
-            sgnPropuesta[p] = 0;
-            empresDePost[p] = -1;
-        }
-        for (int e = 0; e < nE; e++) {
-            empresaLibres.push(e);
-            postulDeEmpresa[e] = -1;
-        }
+        Queue<Integer> sgnEmpresa = new LinkedList<>();
+        for (int e = 0; e < nE; e++) sgnEmpresa.add(e);
+        
+        
+        while(!sgnEmpresa.isEmpty()){
+            int emp = sgnEmpresa.poll(); //se agarra a la primera empresa de la cola
+            int cap = empresas[emp].getCapacidad();
             
-        
-        
-        while(!empresaLibres.empty()){
-            int emp = empresaLibres.peek(); //practicante se postula
-            int post = empPref[emp][sgnPropuesta[emp]].getOrden();
+            if(asignados.get(emp).size() >= cap){
+            continue;}
+            
+            if(sgnPropuesta[emp] >= empPref[emp].length){
+            continue;}
+            
+            int post = empPref[emp][sgnPropuesta[emp]].getOrden(); //agarramos al postulante de ls listaa de propuestas;
             sgnPropuesta[emp]++;
             
-            if(postulantesLibres[post]){
-                postulDeEmpresa[emp] = post;
-                empresDePost[post] = emp;   
-                postulantesLibres[post] = false;
-                empresaLibres.pop();
+            
+            if(empresDePost[post] == -1){
+                asignados.get(emp).add(post);
+                empresDePost[post] = emp;
+                
+                if(asignados.get(emp).size() < cap) sgnEmpresa.add(emp);
             }
             else{
-                if(rankingPost[post][emp] < rankingPost[post][empresDePost[post]]){
-                    empresaLibres.pop();
-                    empresaLibres.push(empresDePost[post]);
-                    postulDeEmpresa[empresDePost[post]] = -1;
-                    postulDeEmpresa[emp] = post;
+                int empActual = empresDePost[post];
+                if(rankingPost[post][emp] < rankingPost[post][empActual]){
+                    asignados.get(empActual).remove(Integer.valueOf(post));
+                    asignados.get(emp).add(post);
                     empresDePost[post] = emp;
-                }
+                
+                if(asignados.get(empActual).size()< empresas[empActual].getCapacidad())sgnEmpresa.add(empActual);
+                
+                if(asignados.get(emp).size() < cap) sgnEmpresa.add(emp);}
+                
+                else{
+                sgnEmpresa.add(emp);}
             }
             }
-            
-            int [][] parejasPorEmpresas = new int[nE][1];
+            System.out.println("pivote while");
+            int [][] postulantesPorEmpresas = new int[nE][];
             for (int i = 0; i < nE; i++) {
-                for (int j = 0; j < 1; j++) {
-                    parejasPorEmpresas[i][j] = postulDeEmpresa[i];
-                    
-                }
-            
+                List<Integer> lista = asignados.get(i);
+                postulantesPorEmpresas[i] = lista.stream().mapToInt(Integer::intValue).toArray();
         }
-            return parejasPorEmpresas;       
+            return postulantesPorEmpresas;       
     }
     
     

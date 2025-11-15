@@ -23,7 +23,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Servicios TI",
                 new String[]{"ciberseguridad", "analitica de datos", "cloud", "automatizacion"},
-                1
+                2
         );
 
         empresas[1] = new Empresa(
@@ -34,7 +34,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Consultoria",
                 new String[]{"analitica de datos", "business intelligence", "machine learning"},
-                1
+                2
         );
 
         empresas[2] = new Empresa(
