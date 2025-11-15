@@ -42,7 +42,7 @@ public class Similitud {
                 lv = similitudLevenshtein(em[e], post[p]);
                 ponderado = (0.7 * jw) + (0.3*lv);
                 post[p].setPuntaje(ponderado, e); //el postulante guarda el puntaje ponderado en su lista de puntajes 
-                puntajes[e][p] = post[p].clone(); 
+                puntajes[e][p] = post[p]; 
             }
             
         }

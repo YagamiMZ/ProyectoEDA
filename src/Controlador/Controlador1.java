@@ -126,14 +126,12 @@ public class Controlador1 {
 
         Similitud.imprimirPuntajes(empresas, Similitud.puntajeFinalIni(empresas, postulantes));
 
-        String[] metodos = {"Jaro", "Levenshtein", "Final"};
-        for (String metodo : metodos) {
 
             System.out.println("=====================================");
-            System.out.println(" EMPAREJAMIENTO - METODO: " + metodo);
+            System.out.println(" EMPAREJAMIENTO" );
             System.out.println("=====================================\n");
             
-            int[][] asign = GaleShapley.emparejar(empresas, postulantes, metodo,rankingPost);
+            int[][] asign = GaleShapley.emparejar(empresas, postulantes, rankingPost);
             System.out.println("Postulante -> Empresa:");
             
             for (int j = 0; j < empresas.length; j++) { 
@@ -177,4 +175,3 @@ public class Controlador1 {
 
         }
     }
-}
