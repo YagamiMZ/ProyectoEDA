@@ -34,7 +34,7 @@ public class Controlador1 {
                 "Lima, Peru",
                 "Consultoria",
                 new String[]{"analitica de datos", "business intelligence", "machine learning"},
-                2
+                1
         );
 
         empresas[2] = new Empresa(
@@ -86,6 +86,7 @@ public class Controlador1 {
                 "Informatica",4);
         
         
+        // Matriz de preferencias de los postulantes
         int[][] rankingPost = {
             {2,1,3},
             {1,3,2},
@@ -127,9 +128,9 @@ public class Controlador1 {
         Similitud.imprimirPuntajes(empresas, Similitud.puntajeFinalIni(empresas, postulantes));
 
 
-            System.out.println("=====================================");
-            System.out.println(" EMPAREJAMIENTO" );
-            System.out.println("=====================================\n");
+        System.out.println("=====================================");
+        System.out.println("            EMPAREJAMIENTO               ");
+        System.out.println("=====================================\n");
             
             int[][] asign = GaleShapley.emparejar(empresas, postulantes, rankingPost);
             System.out.println("Postulante -> Empresa:");

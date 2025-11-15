@@ -6,6 +6,7 @@ package Algoritmos;
  */
 public class DistanciaLevenshtein { // mide las ediciones que se necesitan realizar para transformar una cadena en otra
     
+
     public static int CalcularDistancia (String cad1, String cad2){
         // matriz para calcular la distancia final
         int[][] distancia = new int [cad1.length()+1][cad2.length()+1]; //+1 para tener d[i][0] y [0][j] como datos iniciales
@@ -42,7 +43,16 @@ public class DistanciaLevenshtein { // mide las ediciones que se necesitan reali
                 }   
             }
         }
+        
+        
+        //calcular tiempo de ejecucion
+
         return distancia[cad1.length()][cad2.length()]; //numero de cambios = ultima celda de la matriz (distancia[n][m])
+        
     }
+
+    
+    
+    
     
 }

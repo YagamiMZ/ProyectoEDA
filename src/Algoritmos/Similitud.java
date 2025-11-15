@@ -9,7 +9,7 @@ public class Similitud {
 
     public static double similitudLevenshtein(Empresa e, Postulante p) {
 
-        //Se estandariza la distancai de levenshtein => poder analizarlo mejor junto a Jaro
+        //Se estandariza la distancia de levenshtein => poder analizarlo mejor junto a Jaro
         String a = e.getTexto();
         String b = p.getTexto();
 
@@ -24,7 +24,7 @@ public class Similitud {
     }
 
     public static double similitudJaro(Empresa e, Postulante p) {
-
+        
         String a = e.getTexto();
         String b = p.getTexto();
 
@@ -36,16 +36,37 @@ public class Similitud {
         double jw;
         double lv;
         double ponderado;
+        
+        long TiempoTotalJ = 0;
+        long TiempoTotalLV = 0;
+        
         for (int e = 0; e < em.length; e++) {
             for (int p = 0; p < post.length; p++) {
-                jw = similitudJaro(em[e], post[p]);
+                
+                long inicioL = System.nanoTime();
                 lv = similitudLevenshtein(em[e], post[p]);
-                ponderado = (0.7 * jw) + (0.3*lv);
+                long finL = System.nanoTime();
+                
+                long inicioJ = System.nanoTime();
+                jw = similitudJaro(em[e], post[p]);
+                long finJ = System.nanoTime();
+                
+                TiempoTotalJ += (finJ - inicioJ); // tiempo ejecucion jaro
+                TiempoTotalLV += (finL - inicioL); // tiempo ejecucion leven
+                
+                
+                ponderado = (0.7 * jw) + (0.3*lv); //se considera un mayor peso a la similitud de Jaro
                 post[p].setPuntaje(ponderado, e); //el postulante guarda el puntaje ponderado en su lista de puntajes 
                 puntajes[e][p] = post[p]; 
             }
             
         }
+        
+        //pruebas de tiempo
+        System.out.println("TIEMPOS DE EJECUCION...");
+        System.out.println("JARO: "+ TiempoTotalJ + " ns");
+        System.out.println("LEVENSHTEIN: "+ TiempoTotalLV + " ns\n");
+        
         OrdenarPuntajes(puntajes);
         return puntajes; //postulantes ordenas de mejor a peor nota por empresa
     }
@@ -68,8 +89,7 @@ public class Similitud {
             System.out.println("Empresa: " + empresas[e].getNombre());
             for (Postulante p : postulantes[e]) {
                 double punt = p.getPuntaje()[e];
-                System.out.println("Postulante: " + p.getNombre() + " -> Puntaje: " + punt);
-                System.out.println("--------------");
+                System.out.println("\nPostulante: " + p.getNombre() + " -> Puntaje: " + punt);
             }
             System.out.println("_________________________________________________");
         }

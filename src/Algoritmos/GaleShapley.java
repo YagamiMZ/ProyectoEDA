@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 public class GaleShapley {
 
-    //HACER QUE REGRESE SOLO LAS LISTAS X SEPARADO PARA PODER HACER PRINT MAS FACIL EN CONTROLADOR
+    
     public static int[][] emparejar(Empresa[] empresas, Postulante[] postulantes, int[][] rankingPost) {
         Postulante[][]empPref = calcularPreferenciasEmpresas(empresas, postulantes);
         
@@ -40,7 +40,7 @@ public class GaleShapley {
             if(sgnPropuesta[emp] >= empPref[emp].length){
             continue;}
             
-            int post = empPref[emp][sgnPropuesta[emp]].getOrden(); //agarramos al postulante de ls listaa de propuestas;
+            int post = empPref[emp][sgnPropuesta[emp]].getOrden(); //agarramos al postulante de la lista de propuestas
             sgnPropuesta[emp]++;
             
             
@@ -48,6 +48,7 @@ public class GaleShapley {
                 asignados.get(emp).add(post);
                 empresDePost[post] = emp;
                 
+                //
                 if(asignados.get(emp).size() < cap) sgnEmpresa.add(emp);
             }
             else{
@@ -56,8 +57,9 @@ public class GaleShapley {
                     asignados.get(empActual).remove(Integer.valueOf(post));
                     asignados.get(emp).add(post);
                     empresDePost[post] = emp;
+                    
+                if(asignados.get(empActual).size()< empresas[empActual].getCapacidad()) sgnEmpresa.add(empActual);
                 
-                if(asignados.get(empActual).size()< empresas[empActual].getCapacidad())sgnEmpresa.add(empActual);
                 
                 if(asignados.get(emp).size() < cap) sgnEmpresa.add(emp);}
                 
@@ -65,7 +67,7 @@ public class GaleShapley {
                 sgnEmpresa.add(emp);}
             }
             }
-            System.out.println("pivote while");
+
             int [][] postulantesPorEmpresas = new int[nE][];
             for (int i = 0; i < nE; i++) {
                 List<Integer> lista = asignados.get(i);
